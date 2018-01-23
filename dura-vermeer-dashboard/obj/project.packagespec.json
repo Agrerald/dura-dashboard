@@ -1,0 +1,55 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/dura-vermeer-dashboard.csproj",
+    "projectName": "dura-vermeer-dashboard",
+    "projectPath": "/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/dura-vermeer-dashboard.csproj",
+    "outputPath": "/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/home/agrerald/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {}
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.AspNetCore.All": {
+          "target": "Package",
+          "version": "[2.0.5, )"
+        },
+        "Microsoft.AspNetCore.Mvc": {
+          "target": "Package",
+          "version": "[2.0.2, )"
+        },
+        "Microsoft.AspNetCore.StaticFiles": {
+          "target": "Package",
+          "version": "[2.0.1, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

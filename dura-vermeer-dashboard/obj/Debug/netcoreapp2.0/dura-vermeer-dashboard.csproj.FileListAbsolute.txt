@@ -1,0 +1,10 @@
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/bin/Debug/netcoreapp2.0/dura-vermeer-dashboard.deps.json
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/bin/Debug/netcoreapp2.0/dura-vermeer-dashboard.runtimeconfig.json
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/bin/Debug/netcoreapp2.0/dura-vermeer-dashboard.runtimeconfig.dev.json
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/bin/Debug/netcoreapp2.0/dura-vermeer-dashboard.dll
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/bin/Debug/netcoreapp2.0/dura-vermeer-dashboard.pdb
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/Debug/netcoreapp2.0/dura-vermeer-dashboard.csproj.CoreCompileInputs.cache
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/Debug/netcoreapp2.0/dura-vermeer-dashboard.AssemblyInfoInputs.cache
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/Debug/netcoreapp2.0/dura-vermeer-dashboard.AssemblyInfo.cs
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/Debug/netcoreapp2.0/dura-vermeer-dashboard.dll
+/home/agrerald/Development/Projects/DotNet/dura-vermeer-dashboard/dura-vermeer-dashboard/obj/Debug/netcoreapp2.0/dura-vermeer-dashboard.pdb
