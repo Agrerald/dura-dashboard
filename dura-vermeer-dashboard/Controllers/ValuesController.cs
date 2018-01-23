@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace dura_vermeer_dashboard.Controllers
+namespace Duravermeer.Dashboard.Controllers
 {
   [Route("api/[controller]")]
   public class ValuesController: Controller
