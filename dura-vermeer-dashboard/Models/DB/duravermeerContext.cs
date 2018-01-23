@@ -9,13 +9,8 @@ namespace Duravermeer.Dashboard.Models.DB
     public virtual DbSet<DataPoint> DataPoint { get; set; }
     public virtual DbSet<Node> Node { get; set; }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    public duravermeerContext(DbContextOptions options) : base(options)
     {
-      if (!optionsBuilder.IsConfigured)
-      {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-        optionsBuilder.UseMySql("Server=localhost;Database=duravermeer;User Id=duravermeer;Password=duravermeer;");
-      }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
