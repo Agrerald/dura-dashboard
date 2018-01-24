@@ -35,6 +35,11 @@ namespace Duravermeer.Dashboard.Repository
         .SingleOrDefaultAsync();
     }
 
+    public async Task<List<Node>> FindAllNodes()
+    {
+      return await _context.Node.ToListAsync();
+    }
+
     public async Task<IList<DataPoint>> FindDataPoint(string id, string datum)
     {
       return await _context.DataPoint

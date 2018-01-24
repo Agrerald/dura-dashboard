@@ -40,6 +40,19 @@ namespace Duravermeer.Dashboard.Controllers
       return Ok(dataPoints);
     }
 
+    [HttpGet]
+    [Route("allNodes")]
+    public async Task<IActionResult> GetAllNode()
+    {
+      var nodes = await TrackerRepo.FindAllNodes();
+      if (nodes == null)
+      {
+        return NotFound();
+      }
+
+      return Ok(nodes);
+    }
+
 
     [HttpPost]
     [Route("node")]
