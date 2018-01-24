@@ -1,10 +1,13 @@
 ﻿using System.IO;
 using Duravermeer.Dashboard.Models.DB;
+using Duravermeer.Dashboard.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Serialization;
 
 namespace Duravermeer.Dashboard
 {
@@ -20,11 +23,12 @@ namespace Duravermeer.Dashboard
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<duravermeerContext>(options => { options.UseMySql(Configuration.GetConnectionString("DefaultConnection")); });
-      services.AddMvc();
+      services.AddMvc().AddJsonOptions(a => a.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+      services.AddSingleton<ITrackerRepository, TrackerRepository>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
     {
       app.Use(async (context, next) =>
       {
