@@ -12889,7 +12889,7 @@
         "/home/agrerald/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/home/agrerald/.config/NuGet/NuGet.Config"
+        "/home/agrerald/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -12948,7 +12948,6 @@
             "version": "[2.0.1, )"
           },
           "Microsoft.NETCore.App": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[2.0.5, )"
           },

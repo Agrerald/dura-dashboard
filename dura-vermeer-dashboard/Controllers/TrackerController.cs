@@ -28,7 +28,7 @@ namespace Duravermeer.Dashboard.Controllers
       return Ok(node);
     }
 
-    [HttpGet("{name}", Name = "GetDataPoint")]
+    [HttpGet("{name}/{datum}", Name = "GetDataPoint")]
     public async Task<IActionResult> GetDataPointByName(string name, string datum)
     {
       var dataPoints = await TrackerRepo.FindDataPoint(name, datum);
@@ -42,6 +42,7 @@ namespace Duravermeer.Dashboard.Controllers
 
 
     [HttpPost]
+    [Route("node")]
     public async Task<IActionResult> CreateNode([FromBody] Node node)
     {
       if (node == null)
@@ -53,7 +54,7 @@ namespace Duravermeer.Dashboard.Controllers
     }
 
     [HttpPost]
-    [Route("node")]
+    [Route("datapoint")]
     public async Task<IActionResult> CreateDataPoint([FromBody] DataPoint dataPoint)
     {
       if (dataPoint == null)
@@ -62,18 +63,6 @@ namespace Duravermeer.Dashboard.Controllers
       }
       await TrackerRepo.AddDataPoint(dataPoint);
       return CreatedAtRoute("GetDataPoint", new { Controller = $"Tracker", name = dataPoint.Naam }, dataPoint);
-    }
-
-    [HttpPost]
-    [Route("datapoint")]
-    public async Task<IActionResult> CreateDataPoint([FromBody] Node node)
-    {
-      if (node == null)
-      {
-        return BadRequest();
-      }
-      await TrackerRepo.AddNode(node);
-      return CreatedAtRoute("GetNode", new { Controller = $"Tracker", name = node.Naam }, node);
     }
 
     [HttpPost]
