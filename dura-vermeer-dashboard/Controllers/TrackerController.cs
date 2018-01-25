@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Duravermeer.Dashboard.Models.DB;
 using Duravermeer.Dashboard.Repository;
@@ -63,7 +64,7 @@ namespace Duravermeer.Dashboard.Controllers
         return BadRequest();
       }
       await TrackerRepo.AddNode(node);
-      return CreatedAtRoute("GetNode", new { Controller = "", name = node.Naam }, node);
+      return CreatedAtRoute("GetNode", new { Controller = "Tracker", name = node.Naam }, node);
     }
 
     [HttpPost]
@@ -75,7 +76,7 @@ namespace Duravermeer.Dashboard.Controllers
         return BadRequest();
       }
       await TrackerRepo.AddDataPoint(dataPoint);
-      return CreatedAtRoute("GetDataPoint", new { Controller = $"Tracker", name = dataPoint.Naam }, dataPoint);
+      return CreatedAtRoute("GetDataPoint", new { Controller = "Tracker", name = dataPoint.Naam, datum = dataPoint.Datum }, dataPoint);
     }
 
     [HttpPost]

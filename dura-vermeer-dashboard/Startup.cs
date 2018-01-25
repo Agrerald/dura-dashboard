@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 namespace Duravermeer.Dashboard
@@ -23,7 +24,11 @@ namespace Duravermeer.Dashboard
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddDbContext<duravermeerContext>(options => { options.UseMySql(Configuration.GetConnectionString("DefaultConnection")); });
-      services.AddMvc().AddJsonOptions(a => a.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver());
+      services.AddMvc().AddJsonOptions(a =>
+      {
+        a.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        a.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+      });
       services.AddSingleton<ITrackerRepository, TrackerRepository>();
     }
 
