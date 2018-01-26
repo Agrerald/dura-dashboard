@@ -1,0 +1,3 @@
+<select name="selectedGateway" [(ngModel)]="selectedGateway" (change)="selectGateway()" style="width: auto;">
+  <option *ngFor="let gateway of gateways" value="{{gateway}}">{{gateway}}</option>
+</select>

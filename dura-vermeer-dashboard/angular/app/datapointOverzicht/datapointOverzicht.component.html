@@ -1,0 +1,20 @@
+<br>
+<form style="width: auto;">
+  <form>
+    <div>
+      <label>Gateway:</label>
+      <GatewaySelectorComponent></GatewaySelectorComponent>
+    </div>
+    <div style="display: inline-block;" >
+      <label for="vanDatum" >Van</label>
+      <input type="date" name="vanDatum" [(ngModel)]="vanDatum" style="width: 150px;" (change)="drawChart()" />
+    </div>
+    <div style="display: inline-block; float: right;">
+      <label for="totDatum">Tot</label>
+      <input type="date" name="totDatum" [(ngModel)]="totDatum" style="width: 150px;"/>
+    </div>
+  </form>
+
+  <div [chart]="chart"></div>
+
+</form>

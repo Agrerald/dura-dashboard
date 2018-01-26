@@ -1,0 +1,32 @@
+<br>
+<div>
+  <form>
+    <div *ngIf="this.errors.length > 0">
+      <ul>
+        <li *ngFor="let error of this.errors" style="color: red; font: caption;">{{error}}</li>
+      </ul>
+    </div>
+    <div>
+      <label>Gateway:</label>
+      <GatewaySelectorComponent></GatewaySelectorComponent>
+    </div>
+    <div>
+      <label for="meetdatum">Datum en tijd wanneer de gateway aanging:</label>
+      <input id="meetdatum" type="datetime-local" name="meetdatumInput" [(ngModel)]="meetdatumInput"  />
+    </div>
+    <div>
+      <label for="startDatumCsv">Start datum en tijd in het csv bestand:</label>
+      <input id="startDatumCsv" type="datetime-local" name="startDatumCsvInput" [(ngModel)]="startDatumCsvInput" />
+    </div>
+    <div>
+      <label for="meetbestand">Meetbestand (csv):</label>
+      <input type="file" name="meetbestand" id="meetbestand" accept=".csv" (change)="handleFileInput($event.target.files)"/>
+    </div>
+    <div>
+      <button type="submit" (click)="processInput()">Upload</button>
+    </div>
+  </form>
+</div>
+
+
+
