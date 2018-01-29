@@ -7,11 +7,14 @@
     </div>
     <div style="display: inline-block;" >
       <label for="vanDatum" >Van</label>
-      <input type="date" name="vanDatum" [(ngModel)]="vanDatum" style="width: 150px;" (change)="drawChart()" />
+      <input type="datetime-local" name="vanDatum" [(ngModel)]="vanDatum" style="width: 200px;" />
     </div>
     <div style="display: inline-block; float: right;">
       <label for="totDatum">Tot</label>
-      <input type="date" name="totDatum" [(ngModel)]="totDatum" style="width: 150px;"/>
+      <input type="datetime-local" name="totDatum" [(ngModel)]="totDatum" style="width: 200px;" />
+    </div>
+    <div>
+      <button type="submit" (click)="drawChart()">Ok</button>
     </div>
   </form>
 

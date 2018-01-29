@@ -10,6 +10,7 @@ import {DataPoint} from "../DataPoint";
 })
 export class DataInladenComponent {
   public errors = [];
+  public successMessage = '';
   public selectedFile: File;
   private meetdatum: Date = new Date(Date.parse('2017-01-17T12:00:00'));
   private startDatumCsv: Date = new Date(Date.parse('2018-01-18T00:00:00'));
@@ -26,6 +27,7 @@ export class DataInladenComponent {
 
   public processInput() {
     this.errors = [];
+    this.successMessage = '';
     this.meetdatum = new Date(Date.parse(this.meetdatumInput + ''));
     this.startDatumCsv = new Date(Date.parse(this.startDatumCsvInput + ''));
 
@@ -40,7 +42,9 @@ export class DataInladenComponent {
     fileReader.addEventListener('load', ev => {
       this.fileContent = fileReader.result;
       const data: DataPoint[] = this.CSVToArray(this.fileContent, ',');
-      this.httpService.saveDatapoints(data);
+      this.httpService.saveDatapoints(data).subscribe(message => {
+        this.successMessage = message;
+      });
       //this.dataService.processFile(this.fileContent, this.meetdatum, this.startDatumCsv, this.gateway);
       //this.router.navigateByUrl('/grafiek');
     });

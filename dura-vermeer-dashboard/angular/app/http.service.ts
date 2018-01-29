@@ -23,15 +23,17 @@ export class HttpService {
     return observable.asObservable();
   }
 
-  public saveDatapoints(datapoints: DataPoint[]) {
+  public saveDatapoints(datapoints: DataPoint[]): Observable<string> {
+    const messageObservable = new ReplaySubject<string>(1);
     this.http.post('/api/tracker/import', JSON.stringify(datapoints),  {headers:{'Content-Type': 'application/json'}}).subscribe(value => {
-      console.log(value);
+      messageObservable.next('Success');
     });
+    return messageObservable.asObservable();
   }
 
-  public getDataPointsOnDay(day: Date): Observable<DataPoint[]> {
+  public getDataPointsOnDay(fromDate: Date, toDate: Date, nodeId: number): Observable<DataPoint[]> {
     const dataPointsObservable: ReplaySubject<DataPoint[]> = new ReplaySubject<DataPoint[]>(1);
-    this.http.get('/api/tracker/BlueUp-01-016167/' + day.toLocaleDateString() ).subscribe(data => {
+    this.http.get('/api/tracker/datapoint?fromDate=' + fromDate.toISOString() + '&toDate=' + toDate.toISOString() + '&nodeId=' + nodeId).subscribe(data => {
       const datapoints: DataPoint[] = [];
       for (const datapoint of data as string[]){
         const dp: DataPoint = new DataPoint(datapoint['nodeId']);
@@ -39,7 +41,6 @@ export class HttpService {
         dp.Naam = datapoint['naam'];
         dp.Afstand = datapoint['afstand'];
         dp.RSSI = datapoint['rssi'];
-        console.log(dp);
         datapoints.push(dp);
       }
       dataPointsObservable.next(datapoints);

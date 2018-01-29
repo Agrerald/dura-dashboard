@@ -40,13 +40,12 @@ namespace Duravermeer.Dashboard.Repository
       return await _context.Node.ToListAsync();
     }
 
-    public async Task<IList<DataPoint>> FindDataPoint(string name, string date1, string date2, int nodeId)
+    public async Task<IList<DataPoint>> FindDataPoint(string date1, string date2, int nodeId)
     {
       var dateTime1 = DateTime.Parse(date1);
       var dateTime2 = DateTime.Parse(date2);
       return await _context.DataPoint
-        .Where(predicate: d => d.Naam == name
-                               && d.Datum.Value >= dateTime1
+        .Where(predicate: d =>  d.Datum.Value >= dateTime1
                                && d.Datum.Value <= dateTime2
                                && d.NodeId == nodeId)
         .ToListAsync();

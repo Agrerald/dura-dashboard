@@ -28,11 +28,10 @@ namespace Duravermeer.Dashboard.Controllers
       return Ok(node);
     }
 
-    [HttpGet("datapoint",Name = "GetDataPoint")]
-    public async Task<IActionResult> GetDataPointByName([FromQuery]string name,
-      [FromQuery]string date1, [FromQuery]string date2, [FromQuery]int nodeId)
+    [HttpGet("datapoint", Name = "GetDataPoint")]
+    public async Task<IActionResult> GetDataPointByName([FromQuery]string fromDate, [FromQuery]string toDate, [FromQuery]int nodeId)
     {
-      var dataPoints = await TrackerRepo.FindDataPoint(name, date1, date2, nodeId);
+      var dataPoints = await TrackerRepo.FindDataPoint(fromDate, toDate, nodeId);
       if (dataPoints == null)
       {
         return NotFound();

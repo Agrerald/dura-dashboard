@@ -25,6 +25,9 @@
     <div>
       <button type="submit" (click)="processInput()">Upload</button>
     </div>
+    <div *ngIf="this.successMessage.length > 0" style="color: green; font: caption;">
+      {{this.successMessage}}
+    </div>
   </form>
 </div>
 

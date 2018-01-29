@@ -9,8 +9,9 @@ import {HttpService} from "../http.service";
   templateUrl: './datapointOverzicht.component.html'
 })
 export class DatapointOverzichtComponent {
-  public vanDatum: string = '2017-02-22';
-  public totDatum: string = '2017-02-23';
+  public vanDatum: string = new Date(Date.now() - 1000 * 60 * 60 * 24).toISOString().substr(0, 16);
+  public totDatum: string = new Date(Date.now()).toISOString().substr(0, 16);
+  private selectedNodeId = 0;
   chart = new Chart({
     chart: {
       type: 'scatter'
@@ -47,23 +48,21 @@ export class DatapointOverzichtComponent {
   });
 
   constructor(selectedGatewayService: SelectedGatewayService, public httpService: HttpService) {
-    /*selectedGatewayService.getSelectedGatewayObservable().subscribe(value => {
-
-    });*/
+    selectedGatewayService.getSelectedGatewayObservable().subscribe(value => {
+      this.selectedNodeId = value.id;
+    });
     Highcharts.setOptions({
       global: {
         useUTC: false
       }
     });
-
-    this.drawChart();
   }
 
   public drawChart() {
     while(this.chart.options.series.length > 0) {
       this.chart.removeSerie(0);
     }
-    this.httpService.getDataPointsOnDay( new Date(Date.parse(this.vanDatum)) ).subscribe(datapoints => {
+    this.httpService.getDataPointsOnDay(new Date(Date.parse(this.vanDatum) - 1000 * 60 * 60), new Date(Date.parse(this.totDatum) - 1000 * 60 * 60), this.selectedNodeId ).subscribe(datapoints => {
       const dp = {};
       for (const datapoint of datapoints){
         if(!dp[datapoint.Naam]) dp[datapoint.Naam] = [];
