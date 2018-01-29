@@ -28,6 +28,16 @@ namespace Duravermeer.Dashboard.Repository
       await _context.SaveChangesAsync();
     }
 
+    public async Task AddDataPoint(List<DataPoint> dataPoints)
+    {
+      foreach (var dataPoint in dataPoints)
+      {
+        await _context.DataPoint.AddAsync(dataPoint);
+      }
+
+      await _context.SaveChangesAsync();
+    }
+
     public async Task<Node> FindNode(string name)
     {
       return await _context.Node
@@ -48,6 +58,16 @@ namespace Duravermeer.Dashboard.Repository
         .Where(predicate: d =>  d.Datum.Value >= dateTime1
                                && d.Datum.Value <= dateTime2
                                && d.NodeId == nodeId)
+        .ToListAsync();
+    }
+
+    public async Task<IList<DataPoint>> FindDataPoint(string date1, string date2)
+    {
+      var dateTime1 = DateTime.Parse(date1);
+      var dateTime2 = DateTime.Parse(date2);
+      return await _context.DataPoint
+        .Where(predicate: d => d.Datum.Value >= dateTime1
+                               && d.Datum.Value <= dateTime2)
         .ToListAsync();
     }
 

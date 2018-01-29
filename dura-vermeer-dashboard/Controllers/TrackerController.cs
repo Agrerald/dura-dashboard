@@ -117,5 +117,14 @@ namespace Duravermeer.Dashboard.Controllers
       return Accepted();
     }
 
+    [HttpGet]
+    [Route("rondetijden")]
+    public async Task<IActionResult> RondeTijden([FromQuery] string date1, [FromQuery] string date2)
+    {
+      IEnumerable<DataPoint> dataPoints = await TrackerRepo.FindDataPoint(date1, date2);
+      var rondeTijden = Util.GetRondeTijden(dataPoints);
+      return Ok(rondeTijden);
+    }
+
   }
 }

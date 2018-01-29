@@ -25,6 +25,7 @@
           <e p="TrackerRepository.cs" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
+        <e p="Util.cs" t="Include" />
         <e p="angular" t="Include">
           <e p="app" t="Include">
             <e p="DataPoint.ts" t="Include" />
