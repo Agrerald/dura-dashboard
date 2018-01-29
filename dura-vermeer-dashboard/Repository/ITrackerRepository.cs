@@ -10,8 +10,8 @@ namespace Duravermeer.Dashboard.Repository
     Task AddDataPoint(DataPoint dataPoint);
     Task<Node> FindNode(string name);
     Task<List<Node>> FindAllNodes();
-    Task<IList<DataPoint>> FindDataPoint(string id, string datum);
+    Task<IList<DataPoint>> FindDataPoint(string name, string date1, string date2, int nodeId);
     Task RemoveNode(string id);
-    Task RemoveDataPoint(string id, string datum);
+    Task RemoveDataPoint(string id);
   }
 }

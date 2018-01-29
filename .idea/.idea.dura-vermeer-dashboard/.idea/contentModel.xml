@@ -27,11 +27,35 @@
         <e p="Startup.cs" t="Include" />
         <e p="angular" t="Include">
           <e p="app" t="Include">
+            <e p="DataPoint.ts" t="Include" />
             <e p="app.component.css" t="Include" />
             <e p="app.component.html" t="Include" />
-            <e p="app.component.spec.ts" t="Include" />
             <e p="app.component.ts" t="Include" />
             <e p="app.module.ts" t="Include" />
+            <e p="app.routes.ts" t="Include" />
+            <e p="dataInladen" t="Include">
+              <e p="dataInladen.component.html" t="Include" />
+              <e p="dataInladen.component.ts" t="Include" />
+            </e>
+            <e p="datapointOverzicht" t="Include">
+              <e p="datapointOverzicht.component.html" t="Include" />
+              <e p="datapointOverzicht.component.ts" t="Include" />
+            </e>
+            <e p="gateway.ts" t="Include" />
+            <e p="gatewaySelector" t="Include">
+              <e p="gatewaySelector.component.html" t="Include" />
+              <e p="gatewaySelector.component.ts" t="Include" />
+              <e p="selectedGateway.service.ts" t="Include" />
+            </e>
+            <e p="home" t="Include">
+              <e p="home.component.html" t="Include" />
+              <e p="home.component.ts" t="Include" />
+            </e>
+            <e p="http.service.ts" t="Include" />
+            <e p="menu" t="Include">
+              <e p="menu.component.html" t="Include" />
+              <e p="menu.component.ts" t="Include" />
+            </e>
           </e>
           <e p="assets" t="Include">
             <e p=".gitkeep" t="Include" />

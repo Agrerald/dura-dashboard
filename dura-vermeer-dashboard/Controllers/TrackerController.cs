@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Duravermeer.Dashboard.Models.DB;
 using Duravermeer.Dashboard.Repository;
@@ -10,15 +9,15 @@ namespace Duravermeer.Dashboard.Controllers
   [Route("api/[controller]")]
   public class TrackerController : Controller
   {
-    public ITrackerRepository TrackerRepo { get; set; }
+    private ITrackerRepository TrackerRepo { get; }
 
     public TrackerController(ITrackerRepository trackerRepo)
     {
       TrackerRepo = trackerRepo;
     }
 
-    [HttpGet("{name}", Name = "GetNode")]
-    public async Task<IActionResult> GetNodeByName(string name)
+    [HttpGet("node", Name = "GetNode")]
+    public async Task<IActionResult> GetNodeByName([FromQuery]string name)
     {
       var node = await TrackerRepo.FindNode(name);
       if (node == null)
@@ -29,10 +28,11 @@ namespace Duravermeer.Dashboard.Controllers
       return Ok(node);
     }
 
-    [HttpGet("{name}/{datum}", Name = "GetDataPoint")]
-    public async Task<IActionResult> GetDataPointByName(string name, string datum)
+    [HttpGet("datapoint",Name = "GetDataPoint")]
+    public async Task<IActionResult> GetDataPointByName([FromQuery]string name,
+      [FromQuery]string date1, [FromQuery]string date2, [FromQuery]int nodeId)
     {
-      var dataPoints = await TrackerRepo.FindDataPoint(name, datum);
+      var dataPoints = await TrackerRepo.FindDataPoint(name, date1, date2, nodeId);
       if (dataPoints == null)
       {
         return NotFound();
@@ -79,6 +79,30 @@ namespace Duravermeer.Dashboard.Controllers
       return CreatedAtRoute("GetDataPoint", new { Controller = "Tracker", name = dataPoint.Naam, datum = dataPoint.Datum }, dataPoint);
     }
 
+    [HttpDelete]
+    [Route("datapoint")]
+    public async Task<IActionResult> RemoveDataPoint(string id)
+    {
+      if (id == null)
+      {
+        return BadRequest();
+      }
+      await TrackerRepo.RemoveDataPoint(id);
+      return Accepted();
+    }
+
+    [HttpDelete]
+    [Route("node")]
+    public async Task<IActionResult> RemoveNode(string id)
+    {
+      if (id == null)
+      {
+        return BadRequest();
+      }
+      await TrackerRepo.RemoveNode(id);
+      return Accepted();
+    }
+
     [HttpPost]
     [Route("import")]
     public async Task<IActionResult> Import([FromBody] List<DataPoint> dataPoints)
@@ -91,7 +115,7 @@ namespace Duravermeer.Dashboard.Controllers
       {
         await TrackerRepo.AddDataPoint(dataPoint);
       }
-      return Ok();
+      return Accepted();
     }
 
   }

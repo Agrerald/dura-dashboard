@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Duravermeer.Dashboard.Repository
 {
-  public class TrackerRepository: ITrackerRepository
+  public class TrackerRepository : ITrackerRepository
   {
     public duravermeerContext _context { get; }
 
@@ -31,7 +31,7 @@ namespace Duravermeer.Dashboard.Repository
     public async Task<Node> FindNode(string name)
     {
       return await _context.Node
-        .Where(n => n.Naam == name)
+        .Where(predicate: n => n.Naam == name)
         .SingleOrDefaultAsync();
     }
 
@@ -40,21 +40,42 @@ namespace Duravermeer.Dashboard.Repository
       return await _context.Node.ToListAsync();
     }
 
-    public async Task<IList<DataPoint>> FindDataPoint(string id, string datum)
+    public async Task<IList<DataPoint>> FindDataPoint(string name, string date1, string date2, int nodeId)
     {
+      var dateTime1 = DateTime.Parse(date1);
+      var dateTime2 = DateTime.Parse(date2);
       return await _context.DataPoint
-        .Where(d => d.Naam == id && DateTime.Compare(d.Datum.Value.Date, DateTime.Parse(datum).Date) == 0)
+        .Where(predicate: d => d.Naam == name
+                               && d.Datum.Value >= dateTime1
+                               && d.Datum.Value <= dateTime2
+                               && d.NodeId == nodeId)
         .ToListAsync();
     }
 
     public async Task RemoveNode(string id)
     {
-      throw new System.NotImplementedException();
+      var node = _context.Node
+        .SingleOrDefault(predicate: n => n.Naam == id);
+      if (node == null)
+      {
+        return;
+      }
+
+      _context.Node.Remove(node);
+      await _context.SaveChangesAsync();
     }
 
-    public async Task RemoveDataPoint(string id, string datum)
+    public async Task RemoveDataPoint(string id)
     {
-      throw new System.NotImplementedException();
+      var datapoint = _context.DataPoint
+        .SingleOrDefault(predicate: d => d.DataPointId == int.Parse(id));
+      if (datapoint == null)
+      {
+        return;
+      }
+
+      _context.DataPoint.Remove(datapoint);
+      await _context.SaveChangesAsync();
     }
   }
 }
