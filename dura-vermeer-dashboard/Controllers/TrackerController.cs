@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Duravermeer.Dashboard.Models.DB;
 using Duravermeer.Dashboard.Repository;
@@ -119,10 +121,11 @@ namespace Duravermeer.Dashboard.Controllers
 
     [HttpGet]
     [Route("rondetijden")]
-    public async Task<IActionResult> RondeTijden([FromQuery] string date1, [FromQuery] string date2)
+    public async Task<IActionResult> RondeTijden([FromQuery] string fromDate, [FromQuery] string toDate)
     {
-      IEnumerable<DataPoint> dataPoints = await TrackerRepo.FindDataPoint(date1, date2);
-      var rondeTijden = Util.GetRondeTijden(dataPoints);
+      IList<DataPoint> dataPoints = await TrackerRepo.FindDataPoint(fromDate, toDate);
+      IList<Node> nodes = await TrackerRepo.FindAllNodes();
+      var rondeTijden = Util.GetRondeTijden(dataPoints, nodes);
       return Ok(rondeTijden);
     }
 

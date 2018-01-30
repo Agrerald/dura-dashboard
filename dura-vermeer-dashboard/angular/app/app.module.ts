@@ -13,6 +13,7 @@ import {DataInladenComponent} from "./dataInladen/dataInladen.component";
 import {SelectedGatewayService} from "./gatewaySelector/selectedGateway.service";
 import {DatapointOverzichtComponent} from "./datapointOverzicht/datapointOverzicht.component";
 import {ChartModule} from "angular-highcharts";
+import {RondetijdComponent} from "./rondetijden/rondetijd.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {ChartModule} from "angular-highcharts";
     HomeComponent,
     DataInladenComponent,
     GatewaySelectorComponent,
-    DatapointOverzichtComponent
+    DatapointOverzichtComponent,
+    RondetijdComponent
   ],
   imports: [
     BrowserModule,

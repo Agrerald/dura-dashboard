@@ -48,4 +48,12 @@ export class HttpService {
     return dataPointsObservable.asObservable();
   }
 
+  public getRondetijden(fromDate: Date, toDate: Date) {
+    const rondetijdenObservable = new ReplaySubject(1);
+    this.http.get('/api/tracker/rondetijden?fromDate=' + fromDate.toISOString() + "&toDate=" + toDate.toISOString()).subscribe(rondetijden => {
+      rondetijdenObservable.next(rondetijden);
+    });
+    return rondetijdenObservable.asObservable();
+  }
+
 }

@@ -1,0 +1,18 @@
+<br>
+<form style="width: auto;">
+  <form>
+    <div style="display: inline-block;" >
+      <label for="vanDatum" >Van</label>
+      <input type="datetime-local" name="vanDatum" [(ngModel)]="vanDatum" style="width: 200px;" />
+    </div>
+    <div style="display: inline-block; float: right; margin: 0;">
+      <label for="totDatum">Tot</label>
+      <input type="datetime-local" name="totDatum" [(ngModel)]="totDatum" style="width: 200px;" />
+    </div>
+    <div>
+      <button type="submit" (click)="drawChart()">Ok</button>
+    </div>
+  </form>
+
+  <div [chart]="chart"></div>
+</form>
