@@ -15,4 +15,12 @@
   </form>
 
   <div [chart]="chart"></div>
+
+  <form>
+    <div>
+      <label for="minRondetijd">Minimale rondetijd (seconden):</label>
+      <input name="minRondetijd" type="range" minlength="0" min="0" max="3600" maxlength="3600" value="10" [(ngModel)]="minRondetijd"/>
+      <input type="number" name="minRondetijd" min="0" max="3600" maxlength="4" [(ngModel)]="minRondetijd"/>
+    </div>
+  </form>
 </form>

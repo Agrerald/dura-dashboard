@@ -17,7 +17,18 @@
       <button type="submit" (click)="drawChart()">Ok</button>
     </div>
   </form>
+  <br>
+  <div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'ruw')">Ruwe data</button>
+    <button class="tablinks" onclick="openCity(event, 'gefilterd')">Gefilterde data</button>
+  </div>
 
-  <div [chart]="chart"></div>
+  <div id="ruw" class="tabcontent">
+    <div [chart]="chart"></div>
+  </div>
+
+  <div id="gefilterd" class="tabcontent">
+    <div [chart]="filteredChart"></div>
+  </div>
 
 </form>
